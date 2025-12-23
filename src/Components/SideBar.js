@@ -3,10 +3,10 @@ import MenuItems from './MenuItems'
 
 const SideBar = () => {
   return (
-    <div className='w-[15%]'>
-        <MenuItems />
+    <div className="h-full overflow-y-auto scrollbar-hide">
+      <MenuItems />
     </div>
-  )
-}
+  );
+};
 
-export default SideBar
+export default SideBar;

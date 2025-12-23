@@ -14,6 +14,7 @@ import {
 } from "react-icons/md";
 import { SiYoutubeshorts } from "react-icons/si";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const MenuItems = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
@@ -22,11 +23,11 @@ const MenuItems = () => {
   if (!isMenuOpen) return null;
 
   return (
-    <div className="shadow-lg text-sm">
+    <div className="text-sm">
       {/* Home */}
       <div className="flex items-center gap-4 px-4 py-2 cursor-pointer hover:bg-gray-100 rounded-lg">
         <MdHome size={22} />
-        <span className="font-medium">Home</span>
+        <span className="font-medium"><Link to="/">Home</Link></span>
       </div>
 
       <div className="flex items-center gap-4 px-4 py-2 cursor-pointer hover:bg-gray-100 rounded-lg">
