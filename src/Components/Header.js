@@ -1,19 +1,30 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../utils/appSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const toggleMenuHandler = () => {
+    dispatch(toggleMenu());
+  };
+
   return (
     <div className="grid grid-flow-col items-center px-4 h-14 shadow-lg">
       <div className="flex">
         <img
-          className="h-6"
+          onClick={() => toggleMenuHandler()}
+          className="h-6 cursor-pointer"
           alt="Hamburger-Menu"
           src="https://imgs.search.brave.com/6xhLbJHbHk89dQMljUV-i-W2RgOxY-biyARzH07cw_s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNDYv/NTAxLzk4OC9zbWFs/bC9oYW1idXJnZXIt/bWVudS1iYXItZmxh/dC1pY29uLWZvci1h/cHBzLWFuZC13ZWJz/aXRlcy13ZWJzaXRl/LW5hdmlnYXRpb24t/aGFtYnVyZ2VyLW1l/bnUtaWNvbnMtdmVj/dG9yLmpwZw"
         />
-        <img
-          className="h-6 ml-4"
-          alt="Youtube Logo"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/2560px-YouTube_Logo_2017.svg.png"
-        />
+        <a href="/">
+          <img
+            className="h-6 ml-4"
+            alt="Youtube Logo"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/2560px-YouTube_Logo_2017.svg.png"
+          />
+        </a>
       </div>
       <div className="flex items-center w-full max-w-xl rounded-full border border-gray-600 overflow-hidden">
         <input

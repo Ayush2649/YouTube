@@ -10,14 +10,19 @@ import {
   MdSettings,
   MdHelp,
   MdFeedback,
-  MdFlag
+  MdFlag,
 } from "react-icons/md";
 import { SiYoutubeshorts } from "react-icons/si";
+import { useSelector } from "react-redux";
 
 const MenuItems = () => {
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+
+  // Early Return Pattern
+  if (!isMenuOpen) return null;
+
   return (
     <div className="shadow-lg text-sm">
-
       {/* Home */}
       <div className="flex items-center gap-4 px-4 py-2 cursor-pointer hover:bg-gray-100 rounded-lg">
         <MdHome size={22} />
@@ -32,9 +37,7 @@ const MenuItems = () => {
       <div className="my-3 h-px bg-gray-300"></div>
 
       {/* Subscriptions */}
-      <h1 className="px-4 mb-2 font-semibold text-gray-600">
-        Subscriptions
-      </h1>
+      <h1 className="px-4 mb-2 font-semibold text-gray-600">Subscriptions</h1>
 
       <div className="flex items-center gap-4 px-4 py-2 cursor-pointer hover:bg-gray-100 rounded-lg">
         <MdSubscriptions size={22} />
@@ -95,9 +98,7 @@ const MenuItems = () => {
         <span>Send Feedback</span>
       </div>
 
-      <p className="text-gray-500 px-4 mt-4 text-xs">
-        © 2025 Google LLC
-      </p>
+      <p className="text-gray-500 px-4 mt-4 text-xs">© 2025 Google LLC</p>
     </div>
   );
 };
