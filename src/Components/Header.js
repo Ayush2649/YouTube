@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { cacheResults } from "../utils/searchSlice";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -8,6 +9,8 @@ const Header = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const dispatch = useDispatch();
+
+  const searchResults = useSelector((store) => store.search);
 
   useEffect(() => {
     if (!searchQuery.trim()) {
@@ -17,13 +20,18 @@ const Header = () => {
     }
 
     const timer = setTimeout(() => {
-      getResultSearch();
+      if (searchResults[searchQuery]) {
+        setSuggestions(searchResults[searchQuery]);
+        setShowSuggestions(true);
+      } else {
+        getResultSearch();
+      }
     }, 200);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [searchQuery]);
+  }, [searchQuery, searchResults]);
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
@@ -39,6 +47,7 @@ const Header = () => {
       const json = await data.json();
       setSuggestions(json[1]);
       setShowSuggestions(true);
+      dispatch(cacheResults({ [searchQuery]: json[1] }));
     } catch (error) {
       console.error("Search API failed (CORS)", error);
     }
@@ -69,7 +78,9 @@ const Header = () => {
             placeholder="Search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            onFocus={() => { if(searchQuery) setShowSuggestions(true) }}
+            onFocus={() => {
+              if (searchQuery) setShowSuggestions(true);
+            }}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
             className="flex-1 px-4 py-2 outline-none"
           />
