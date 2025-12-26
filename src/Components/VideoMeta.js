@@ -37,16 +37,16 @@ const VideoMeta = ({ videoId }) => {
             </p>
           </div>
 
-          <button className="ml-4 bg-black text-white px-4 py-2 rounded-full text-sm">
+          <button className="ml-4 bg-black text-white px-4 py-2 rounded-full text-sm hover:bg-red-600">
             Subscribe
           </button>
         </div>
 
         <div className="flex gap-2">
-          <button className="bg-gray-100 px-4 py-2 rounded-full text-sm">
+          <button className="bg-gray-100 px-4 py-2 rounded-full text-sm hover:bg-green-600">
             👍 {Number(likeCount).toLocaleString()}
           </button>
-          <button className="bg-gray-100 px-4 py-2 rounded-full text-sm">
+          <button className="bg-gray-100 px-4 py-2 rounded-full text-sm hover:bg-red-600">
             👎
           </button>
           <button className="bg-gray-100 px-4 py-2 rounded-full text-sm">

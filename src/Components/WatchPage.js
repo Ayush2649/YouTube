@@ -4,7 +4,7 @@ import { closeMenu } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
 import WatchVideo from "./WatchVideo";
 import VideoMeta from "./VideoMeta";
-import Comments from "./Comments";
+import CommentsContainer from "./CommentsContainer";
 
 const WatchPage = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const WatchPage = () => {
       <div className="w-full max-w-5xl">
         <WatchVideo videoId={videoId} />
         <VideoMeta videoId={videoId} />
-        <Comments videoId={videoId} />
+        <CommentsContainer videoId={videoId} />
       </div>
 
       <div className="hidden lg:block w-[400px] ml-6"></div>
