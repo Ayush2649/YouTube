@@ -5,28 +5,33 @@ import { useSearchParams } from "react-router-dom";
 import WatchVideo from "./WatchVideo";
 import VideoMeta from "./VideoMeta";
 import CommentsContainer from "./CommentsContainer";
+import LiveChat from "./LiveChat";
 
 const WatchPage = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const videoId = searchParams.get("v");
 
-  // 🔥 AUTO-CLOSE SIDEBAR WHEN WATCH PAGE LOADS
   useEffect(() => {
     dispatch(closeMenu());
   }, [dispatch]);
 
   return (
     <div className="flex px-6 py-4">
-      <div className="w-full max-w-5xl">
+      {/* LEFT SECTION */}
+      <div className="flex-1 max-w-5xl">
         <WatchVideo videoId={videoId} />
         <VideoMeta videoId={videoId} />
         <CommentsContainer videoId={videoId} />
       </div>
 
-      <div className="hidden lg:block w-[400px] ml-6"></div>
+      {/* RIGHT SECTION (Live Chat) */}
+      <div className="hidden lg:block w-[400px] ml-6">
+        <LiveChat />
+      </div>
     </div>
   );
 };
 
 export default WatchPage;
+
